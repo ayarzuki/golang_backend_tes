@@ -22,7 +22,8 @@ Berikut adalah beberapa keuntungan menggunakan Clean Architecture dalam proyek i
 │ └── product.go
 ├── handlers
 │ ├── product_handlers.go
-└── README.md```
+└── README.md
+```
 
 - `main.go` berfungsi untuk menjalankan aplikasi dan menentukan routing.
 - Folder `config` berisi konfigurasi koneksi database dan automigrasi model.
