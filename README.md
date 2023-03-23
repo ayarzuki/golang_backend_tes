@@ -53,6 +53,8 @@ Keterangan:
     - `-d '{"name": "Product A", "price": 1000, "description": "Deskripsi Product A", "quantity": 10}'` : Data yang akan dikirimkan dalam bentuk JSON.
     - `http://localhost:8080/api/products` : Endpoint API yang akan dipanggil.
 
+![Alt Text](https://i.postimg.cc/P5GL546R/POST.png)
+
 ### Dapatkan Daftar Produk dengan Pengurutan Berdasarkan Harga Termurah
 
 Untuk mendapatkan daftar produk dengan pengurutan berdasarkan harga termurah, gunakan perintah curl berikut:
@@ -65,6 +67,8 @@ Keterangan:
     - `-X GET` : Menggunakan method GET.
     - `http://localhost:8080/api/products?sort=price` : Endpoint API yang akan dipanggil, dengan parameter `sort` yang bernilai `price` untuk mengurutkan berdasarkan `harga termurah`.
 
+![Alt Text](https://i.postimg.cc/qv8Nh3SM/termurah.png)
+
 ### Dapatkan Daftar Produk dengan Pengurutan Berdasarkan Harga Termahal
 
 Untuk mendapatkan daftar produk dengan pengurutan berdasarkan harga termahal, gunakan perintah curl berikut:
@@ -75,6 +79,8 @@ curl -X GET http://localhost:8080/api/products?sort=-price
 Keterangan:
     - `-X GET` : Menggunakan method GET.
     - `http://localhost:8080/api/products?sort=-price` : Endpoint API yang akan dipanggil, dengan parameter `sort` yang bernilai `-price` untuk mengurutkan berdasarkan `harga termahal`.
+
+![Alt Text](https://i.postimg.cc/mrjhVGTv/termahal.png)
 
 ### Dapatkan Daftar Produk dengan Pengurutan Berdasarkan Nama (A-Z)
 
@@ -87,6 +93,8 @@ Keterangan:
     - `-X GET` : Menggunakan method GET.
     - `http://localhost:8080/api/products?sort=name` : Endpoint API yang akan dipanggil, dengan parameter `sort` yang bernilai `name` untuk mengurutkan berdasarkan nama dari `A-Z`.
 
+![Alt Text](https://i.postimg.cc/5yTXvqfj/a-to-z.png)
+
 ### Dapatkan Daftar Produk dengan Pengurutan Berdasarkan Nama (Z-A)
 
 Untuk mendapatkan daftar produk dengan pengurutan berdasarkan nama dari Z-A, gunakan perintah curl berikut:
@@ -97,3 +105,5 @@ curl -X GET http://localhost:8080/api/products?sort=-name
 Keterangan:
     - `-X GET` : Menggunakan method GET.
     - `http://localhost:8080/api/products?sort=-name` : Endpoint API yang akan dipanggil, dengan parameter sort yang bernilai `-name` untuk mengurutkan berdasarkan nama dari `Z-A`.
+
+![Alt Text](https://i.postimg.cc/xdncKdVG/z-to-a.png)
