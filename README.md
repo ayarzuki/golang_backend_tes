@@ -1,7 +1,7 @@
-# REST API Product dengan Golang dan MySQL/PostgreSQL
+# REST API Product dengan Golang dan MySQL
 
 ## Arsitektur
-Aplikasi ini menggunakan arsitektur berbasis package yang memisahkan antara konfigurasi, model, dan handler. Alasan menggunakan arsitektur ini adalah untuk memudahkan dalam pengembangan, pemeliharaan, dan mengikuti prinsip Single Responsibility. Arsitektur yang paling cocok adalah arsitektur berbasis package yang modular dan mudah dipelihara. Salah satu pendekatan yang saya gunakan adalah Clean Architecture, yang memisahkan komponen berdasarkan tanggung jawab mereka.
+Aplikasi ini menggunakan arsitektur berbasis package yang memisahkan antara konfigurasi, model, dan handler. Alasan menggunakan arsitektur ini adalah untuk memudahkan dalam pengembangan, pemeliharaan, dan mengikuti prinsip Single Responsibility. Arsitektur yang digunakan adalah arsitektur berbasis package yang modular dan mudah dipelihara. Salah satu pendekatan yang saya gunakan adalah Clean Architecture, yang memisahkan komponen berdasarkan tanggung jawab mereka.
 ### Keuntungan Menggunakan Clean Architecture
 Berikut adalah beberapa keuntungan menggunakan Clean Architecture dalam proyek ini:
 1. **Pemisahan Tanggung Jawab**: Clean Architecture memisahkan tanggung jawab ke dalam komponen yang jelas dan terisolasi, seperti Model, Handlers, Config, Repositories, dan Services. Hal ini memudahkan pemeliharaan kode dan memungkinkan pengembangan lebih lanjut.
@@ -22,6 +22,8 @@ Berikut adalah beberapa keuntungan menggunakan Clean Architecture dalam proyek i
 │ └── product.go
 ├── handlers
 │ ├── product_handlers.go
+│ ├── product_handlers_test.go
+│ └── .env  
 └── README.md
 ```
 
@@ -32,6 +34,66 @@ Berikut adalah beberapa keuntungan menggunakan Clean Architecture dalam proyek i
 
 ## Cara Menjalankan Aplikasi secara lokal
 1. Pastikan Golang, MySQL atau PostgreSQL, dan library yang diperlukan sudah terinstall.
-2. Sesuaikan konfigurasi koneksi database pada file `config/db.go`.
+2. Sesuaikan konfigurasi koneksi database pada file `config/db.go`. File .env terdapat dalam folder handlers.
 3. Jalankan aplikasi dengan perintah `go run main.go`.
 4. Aplikasi akan berjalan pada `localhost:8080` dan siap menerima request melalui endpoint yang tersedia.
+
+
+## Pengujian API
+### Tambahkan Produk
+Untuk menambahkan produk, gunakan perintah curl berikut:
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"name": "Product A", "price": 1000, "description": "Deskripsi Product A", "quantity": 10}' http://localhost:8080/api/products
+```
+
+Keterangan:
+    - `-X POST` : Menggunakan method POST.
+    - `-H` "Content-Type: application/json" : Menggunakan header dengan tipe konten JSON.
+    - `-d '{"name": "Product A", "price": 1000, "description": "Deskripsi Product A", "quantity": 10}'` : Data yang akan dikirimkan dalam bentuk JSON.
+    - `http://localhost:8080/api/products` : Endpoint API yang akan dipanggil.
+
+### Dapatkan Daftar Produk dengan Pengurutan Berdasarkan Harga Termurah
+
+Untuk mendapatkan daftar produk dengan pengurutan berdasarkan harga termurah, gunakan perintah curl berikut:
+
+```bash
+curl -X GET http://localhost:8080/api/products?sort=price
+```
+
+Keterangan:
+    - `-X GET` : Menggunakan method GET.
+    - `http://localhost:8080/api/products?sort=price` : Endpoint API yang akan dipanggil, dengan parameter `sort` yang bernilai `price` untuk mengurutkan berdasarkan `harga termurah`.
+
+### Dapatkan Daftar Produk dengan Pengurutan Berdasarkan Harga Termahal
+
+Untuk mendapatkan daftar produk dengan pengurutan berdasarkan harga termahal, gunakan perintah curl berikut:
+
+```bash
+curl -X GET http://localhost:8080/api/products?sort=-price
+```
+Keterangan:
+    - `-X GET` : Menggunakan method GET.
+    - `http://localhost:8080/api/products?sort=-price` : Endpoint API yang akan dipanggil, dengan parameter `sort` yang bernilai `-price` untuk mengurutkan berdasarkan `harga termahal`.
+
+### Dapatkan Daftar Produk dengan Pengurutan Berdasarkan Nama (A-Z)
+
+Untuk mendapatkan daftar produk dengan pengurutan berdasarkan nama dari A-Z, gunakan perintah curl berikut:
+
+```bash
+curl -X GET http://localhost:8080/api/products?sort=name
+```
+Keterangan:
+    - `-X GET` : Menggunakan method GET.
+    - `http://localhost:8080/api/products?sort=name` : Endpoint API yang akan dipanggil, dengan parameter `sort` yang bernilai `name` untuk mengurutkan berdasarkan nama dari `A-Z`.
+
+### Dapatkan Daftar Produk dengan Pengurutan Berdasarkan Nama (Z-A)
+
+Untuk mendapatkan daftar produk dengan pengurutan berdasarkan nama dari Z-A, gunakan perintah curl berikut:
+
+```bash
+curl -X GET http://localhost:8080/api/products?sort=-name
+```
+Keterangan:
+    - `-X GET` : Menggunakan method GET.
+    - `http://localhost:8080/api/products?sort=-name` : Endpoint API yang akan dipanggil, dengan parameter sort yang bernilai `-name` untuk mengurutkan berdasarkan nama dari `Z-A`.
