@@ -38,6 +38,38 @@ Berikut adalah beberapa keuntungan menggunakan Clean Architecture dalam proyek i
 3. Jalankan aplikasi dengan perintah `go run main.go`.
 4. Aplikasi akan berjalan pada `localhost:8080` dan siap menerima request melalui endpoint yang tersedia.
 
+## SQL Script
+```sql
+CREATE DATABASE goproduct;
+
+USE goproduct;
+
+CREATE TABLE products (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  price BIGINT NOT NULL,
+  description TEXT,
+  quantity INT NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+);
+
+-- Mengambil daftar produk yang diurutkan berdasarkan produk terbaru
+SELECT * FROM products ORDER BY created_at DESC;
+
+-- Mengambil daftar produk yang diurutkan berdasarkan harga termurah
+SELECT * FROM products ORDER BY price ASC;
+
+-- Mengambil daftar produk yang diurutkan berdasarkan harga termahal
+SELECT * FROM products ORDER BY price DESC;
+
+-- Mengambil daftar produk yang diurutkan berdasarkan nama produk A-Z
+SELECT * FROM products ORDER BY name ASC;
+
+-- Mengambil daftar produk yang diurutkan berdasarkan nama produk Z-A
+SELECT * FROM products ORDER BY name DESC;
+```
 
 ## Pengujian API
 ### Tambahkan Produk
